@@ -89,6 +89,7 @@ python3 maketile.py
 次のコマンドを実行すると、ソースコードのダウンロードから、ソースコードの入力、ビルドを行うことができます。すぐに動作確認したい場合にご活用ください。
 
 ```
+cd ~/workspace/
 ./prepare.sh
 cd tutorial
 make

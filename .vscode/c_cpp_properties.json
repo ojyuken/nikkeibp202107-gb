@@ -1,0 +1,20 @@
+{
+    "configurations": [
+        {
+            "name": "gbdk-2020",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/opt/gbdk/include/**"
+            ],
+            "defines": [],
+            "compilerPath": "/opt/gbdk/bin/lcc",
+            "cStandard": "c11",
+            "cppStandard": "c++11",
+            "intelliSenseMode": "${default}",
+            "compilerArgs": [
+                "-Wa-l -Wl-m"
+            ]
+        }
+    ],
+    "version": 4
+}

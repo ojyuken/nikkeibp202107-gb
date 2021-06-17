@@ -1,0 +1,15 @@
+version: '2'
+services:
+  ws:
+    image: "vscode-remote-gb-dev"
+    build:
+      context: "docker-gb-dev"
+      dockerfile: Dockerfile
+    volumes:
+      - ..:/home/gbdev/workspace:cached
+      - gbdev-home:/home/gbdev
+    ports:
+      - "8080:8080"
+    tty: true
+volumes:
+  gbdev-home:

@@ -1,7 +1,7 @@
 version: '2'
 services:
   ws:
-    image: "vscode-remote-gb-dev"
+    image: "vscode-remote-gb-dev:bp202107"
     build:
       context: "docker-gb-dev"
       dockerfile: Dockerfile

@@ -1,104 +1,98 @@
-# vscode-remote-gb-dev
+# ゲームボーイで動くゲームを作ろう - 日経ソフトウエア 2021/07号
 
-Preparing for the OJYUKEN = VSCode + Docker + GBDK-2020
+日経ソフトウエア 2021/07号  
+特集５  
+ゲームボーイで動くゲームを作ろう  
+
+第１部　開発環境を導入して実験プログラムを動かす  
+松原　拓也（有限会社ニコ）　ゲームとロボットが好きな技術者兼ライター。家には古いゲーム機がたくさん転がっている。　「ゲームボーイ」は任天堂が1989年に発売した携帯型ゲーム機です。(64〜77ページ掲載記事から抜粋)    
+*テキスト版記事の文字数：11955文字
+
+**▼ 本記事はPDFで購入できます。**  
+https://bizboard.nikkeibp.co.jp/kijiken/summary/20210524/NSW0276H_5021392a.html
+
+**▼バックナンバー 日経ソフトウエア 2021/07号**  
+https://info.nikkeibp.co.jp/media/NSW/atcl/mag/051400036/
 
 
-# Get Started
+# 始め方
 
-This template is the development environment template for GB.
+本記事の内容を試すために、Dockerイメージを簡単に作成できるようにしました。VSCodeでサンプルプログラムを入力し、実際にそのプログラムをエミュレーターで実行することができます。
 
-With the combination of VSCode and Docker, GBDK-2020, you can easily start developing right away. Of course, you can also emulate your compiled GB application.
+![screeenshot](./gbdk.png)
 
-## Requirements  
+## 事前準備
 
-Install the following tools.  
+次のツールをインストールします。
 
 1. [git](https://git-scm.com/)
 1. [VSCode](https://code.visualstudio.com/download)
 1. [Docker](https://www.docker.com/)
 
-If you want to create your repository by `use this template`, [sign up](https://github.com/signup) and sign in github.
+## 開発環境の作成と起動
 
-# How to use
+本リポジトリを開発用パソコンにクローンし、VSCodeで開きます。
 
-## Use this template
-
-1. Open the repository on github.  
-   https://github.com/ojyuken/vscode-remote-gb-dev
-
-1. Click `Use this template`.  
-   [Here - https://github.com/ojyuken/vscode-remote-gb-dev/generate](https://github.com/ojyuken/vscode-remote-gb-dev/generate)
-
-
-## git clone
-
-1. Open the command prompt and run below commands.
-
-```CommandPrompt.cmd
+```コマンドプロンプト.cmd
 mkdir c:\workgit
 cd c:\workgit
-git clone <your GitHub Code URL>
+git clone https://github.com/ojyuken/nikkeibp202107-gb.git
+code nikkeibp202107-gb
 ```
 
-## VSCode, Reopen in Container
+次の手順でVSCodeを操作し、Dockerイメージを作成し、開発環境を起動します。
 
-1. Open the git cloned folder in VSCode.  
-1. Install the "Remote - Containers" extension to VSCode.
-1. An icon for the extension "Remote - Containers" will be added to the bottom left corner of VSCode, click on that icon.  
-1. Select "Remote-Containers: Reopen in Container" from the list.
-1. The Docker container will start and you will be able to develop remotely from VSCode.
+1. "Remote - Containers" 拡張機能をインストールします。
+1. 右下の角に追加された "Remote - Containers" 拡張機能のアイコンをクリックします。
+1. リストが表示されますので、 "Remote-Containers: Reopen in Container" をクリックします。
+1. Dockerのイメージが作成され、Dockerコンテナーが起動し、VSCodeからリモート操作できます。
 
+※ VSCodeを再度起動した場合、"Remote-Containers: Reopen in Container"を再度選択してください。
 
-## GB development tools
+## サンプルプログラム
 
-GB development tools installed, `/opt`.
+雑誌に掲載されている記事の内容に沿って、STEP1からSTEP4までのフォルダーを用意しました。
+雑誌のダウンロードページからソースコード等をダウンロードし、各フォルダ内のファイル(`main.c`)を開き、ソースコードを入力してください。
 
-1. gbdk-2020 - /opt/gbdk
-1. rgbds - /opt/rgbds
-
-Open http://localhost:8080, then select the fluxbox menu (right-click on desktop.)  
-You can use the following tools via noVNC:
-
-1. gameboy tile designer (gbtd)
-1. gameboy map builder (gbmb)
-1. gameboy emulator (bgb)
-
-Also, it included gbtdg which is great for making splash images.  
-http://localhost:8080/gbtdg/
-
-## Example
-
-An example by [konsumer](https://github.com/konsumer/docker-gb-dev/tree/master/example) is included, so you can build and run it.
-
-Following commands, and then open http://localhost:8080.
+本開発環境は、Linux上に構築していますので、雑誌で説明されているWindows用のバッチファイルではビルドできません。その代わりに、`make`を使ってビルドできるように`Makefile`を各フォルダに用意しました。  
+ソースコードを入力後、各フォルダ内で、`make`コマンドを実行してビルドを行ってください。
 
 ```
-cd /home/gbdev/workspace/.devcontainer/docker-gb-dev/example
+cd ~/workspace/tutorial/step1
 make
-wine /opt/bgb/bgb.exe demo.gb
 ```
 
-You can also try [the gbdk-2020 examples](https://github.com/gbdk-2020/gbdk-2020/tree/develop/gbdk-lib/examples/gb) as well.
+**メモ：** 記事の中で、pythonを実行する場面がありますが、掲載されているソースコードは、Python 3で動作するようです。次のコマンドを使用してください。
 
 ```
-cd /opt/gbdk/examples/gb
+cd ~/workspace/tutorial/step2/maketile
+python3 maketile.py
 ```
 
 
-# More Info
+### 自動化（ダウンロードからビルドまで）
 
-Here are the tools installed in this environment:
+次のコマンドを実行すると、ソースコードのダウンロードから、ソースコードの入力、ビルドを行うことができます。すぐに動作確認したい場合にご活用ください。
 
-- [gbdk-2020](https://github.com/gbdk-2020/gbdk-2020) (Zal0 renamed to gbdk-2020)
-- [rgbds](https://github.com/rednex/rgbds)
-- [gameboy tile designer](http://www.devrs.com/gb/hmgd/gbtd.html) (via wine)
-- [gameboy map builder](http://www.devrs.com/gb/hmgd/gbmb.html) (via wine)
-- [bgb gameboy emulator](https://bgb.bircd.org/) (via wine)
-- [gameboy tile data generator](https://github.com/chrisantonellis/gbtdg) (running [on web](http://localhost:8080/gbtdg/))
-- [konsumer/docker-gb-dev](https://github.com/konsumer/docker-gb-dev) (this template forked from it.)
+```
+./prepare.sh
+cd tutorial
+make
+```
 
-The GB's homepage is [here](https://www.nintendo.co.jp/n02/dmg/index.html) (Japanese).
 
-- [GAME BOY](https://www.nintendo.co.jp/n02/dmg/index.html)
-- [Hardware](https://www.nintendo.co.jp/n02/dmg/hardware/index.html)
-- [Option](https://www.nintendo.co.jp/n02/dmg/hardware/option/index.html)
+## 動作確認（エミュレーター）
+
+サンプルプログラムは、エミュレーターで実行することができます。プログラムのコンパイル（`make`）が成功すると各フォルダ内にgbファイルが生成されますので、これをエミュレーターで動作確認できます。
+
+1. ブラウザーで http://localhost:8080/ にアクセスし、 `noVNC`にアクセスします。
+1. ブラウザー内のデスクトップで右クリックし、メニューから "Gameboy Emulator - BGB" を選択します。
+1. bgb が起動したら、画面内で右クリックし、メニューから "Load ROM" を選択します。
+1. step1からstep4の各フォルダの中から、gb形式ファイルを選択し、エミューレーターで動作確認します。
+
+
+# 特記事項
+
+著作権上、雑誌に掲載されているソースコード等は、本リポジトリに含んでいません。サンプルプログラムを実行する際は、記事を入手し、雑誌のダウンロードページからソースコード等をダウンロードして、ソースコードを入力してください。  
+尚、入力もしくは入手した雑誌のソースコード等は、著作権法により保護されています。
+著作者および日経BPの許諾を得ずに、プログラムおよびデータそのものまたは改変したものを配布したり販売したりすることはできません。

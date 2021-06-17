@@ -56,4 +56,6 @@ RUN chmod 666 /opt/gbtd/gbtd.ini
 COPY gbmb.ini /opt/gbmb/gbmb.ini
 RUN chmod 666 /opt/gbmb/gbmb.ini
 
+RUN apt-get install -y python3
+
 CMD ["/usr/bin/supervisord"]

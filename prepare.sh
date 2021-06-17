@@ -17,7 +17,7 @@ iconv -f sjis -t utf8 -o _readme.utf8.txt readme.txt
 
 # STEP 1
 # - リスト1
-iconv -f sjis -t utf8 -o ../tutorial/step1/main.c list01.txt
+iconv -f utf8 -t utf8 -o ../tutorial/step1/main.c list01.txt
 
 # STEP 2
 # - リスト3

@@ -43,7 +43,7 @@ code nikkeibp202107-gb
 次の手順でVSCodeを操作し、Dockerイメージを作成し、開発環境を起動します。
 
 1. "Remote - Containers" 拡張機能をインストールします。
-1. 右下の角に追加された "Remote - Containers" 拡張機能のアイコンをクリックします。
+1. 左下の角に追加された "Remote - Containers" 拡張機能のアイコンをクリックします。
 1. リストが表示されますので、 "Remote-Containers: Reopen in Container" をクリックします。
 1. Dockerのイメージが作成され、Dockerコンテナーが起動し、VSCodeからリモート操作できます。
 

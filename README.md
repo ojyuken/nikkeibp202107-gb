@@ -95,6 +95,14 @@ cd tutorial
 make
 ```
 
+> **実行時エラー:**  
+> 次のような実行時エラーが発生した場合、`prepare.sh`ファイルの改行コードを`CRLF`ではなく、`LF`に変更してください。  
+> `prepare.sh`を開き、VSCodeの右下にある `CRLF` をクリックして、選択リストから`LF`を選んでください。
+> 
+> gbdev@xxxxxxxxxxx:~/workspace$ ./prepare.sh  
+> bash: ./prepare.sh: /bin/bash^M: bad interpreter: No such file or directory  
+
+
 
 ## 動作確認（エミュレーター）
 
